@@ -1,0 +1,74 @@
+/* =====================================================================
+   TOKENS DE DISEÑO — ReservaUPLA
+   Todos los colores, tamaños y espacios salen de aquí (consistencia).
+   Azul primario tomado del logo oficial de la UPLA. Contrastes calculados según WCAG 2.2 (mínimo 4.5:1 en texto).
+   ===================================================================== */
+:root {
+  /* ---- Colorimetría (regla 60-30-10) ----
+     60 % neutros (fondos blancos y grises muy claros)
+     30 % azul institucional (confianza, formalidad académica)
+     10 % dorado (acento: llamadas a la acción y detalles de marca)         */
+  --azul-950: #031f3a;
+  --azul-900: #04406f;
+  --azul-800: #0066b1;   /* primario: azul de la marca UPLA (#0066B1 del logo); blanco sobre este color = 5,9:1 */
+  --azul-700: #0a6fc0;
+  --azul-600: #2a86d4;
+  --azul-100: #dcecf9;
+  --azul-50:  #f0f7fd;
+
+  --dorado-500: #e5a50a; /* acento: texto azul-950 sobre este color = 7,7:1 */
+  --dorado-100: #fdf1cc;
+  --dorado-800: #7a5300;
+
+  --gris-950: #0b1220;
+  --gris-900: #111b2e;   /* texto principal sobre blanco = 17:1 */
+  --gris-700: #364152;
+  --gris-600: #4a5568;   /* texto secundario sobre blanco = 7,5:1 */
+  --gris-400: #94a3b8;
+  --gris-300: #cbd5e1;   /* bordes */
+  --gris-200: #e2e8f0;
+  --gris-100: #f1f5f9;
+  --fondo:    #f5f7fb;
+  --blanco:   #ffffff;
+
+  /* ---- Colores semánticos (siempre acompañados de ícono y texto) ---- */
+  --exito-fg: #14532d;  --exito-bg: #dcfce7;  --exito-borde: #86efac;  --exito-solido: #15803d;
+  --aviso-fg: #713f12;  --aviso-bg: #fef3c7;  --aviso-borde: #fcd34d;  --aviso-solido: #b45309;
+  --error-fg: #7f1d1d;  --error-bg: #fee2e2;  --error-borde: #fca5a5;  --error-solido: #b91c1c;
+  --info-fg:  #05396a;  --info-bg:  #dcecf9;  --info-borde:  #8fc0ea;
+
+  /* ---- Tipografía ----
+     Poppins (títulos): geométrica, con personalidad, legible en tamaños grandes.
+     Inter (texto e interfaz): diseñada para pantallas, excelente legibilidad. */
+  --fuente-titulos: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --fuente-texto: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  /* Escala tipográfica (razón ≈ 1,2) sobre una base de 16 px */
+  --texto-xs: 0.75rem;    /* 12 px */
+  --texto-sm: 0.875rem;   /* 14 px */
+  --texto-base: 1rem;     /* 16 px */
+  --texto-lg: 1.125rem;   /* 18 px */
+  --texto-xl: 1.25rem;    /* 20 px */
+  --texto-2xl: 1.5rem;    /* 24 px */
+  --texto-3xl: 1.875rem;  /* 30 px */
+  --texto-4xl: 2.5rem;    /* 40 px */
+  --interlineado: 1.55;
+
+  /* ---- Espaciado (múltiplos de 4 px) ---- */
+  --e1: 0.25rem; --e2: 0.5rem; --e3: 0.75rem; --e4: 1rem;
+  --e5: 1.25rem; --e6: 1.5rem; --e8: 2rem; --e10: 2.5rem; --e12: 3rem;
+
+  /* ---- Forma y profundidad ---- */
+  --radio-sm: 6px; --radio: 10px; --radio-lg: 16px; --radio-total: 999px;
+  --sombra-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --sombra: 0 4px 14px rgba(15, 23, 42, 0.08);
+  --sombra-lg: 0 20px 45px rgba(10, 42, 102, 0.18);
+
+  /* ---- Interacción ---- */
+  --objetivo-minimo: 44px;          /* tamaño mínimo de toque (recomendación táctil) */
+  --foco: 0 0 0 3px #ffffff, 0 0 0 6px #0a6fc0; /* anillo de foco visible, 2 capas */
+  --transicion: 160ms ease;
+
+  --ancho-sidebar: 272px;
+  --ancho-contenido: 1180px;
+}

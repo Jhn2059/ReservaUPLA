@@ -1,0 +1,122 @@
+/* =====================================================================
+   INICIO DE SESIÓN — identidad UPLA
+   Panel visual (hexágonos, Andes y tarjetas de cristal) + tarjeta de acceso.
+   ===================================================================== */
+.logo { display: block; width: auto; height: var(--altura-logo, 40px); }
+.sidebar__logo { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; background: #fff; border-radius: 12px; flex-shrink: 0; }
+
+/* Botón de marca (degradado del azul UPLA) e interruptor */
+.boton--marca { background: linear-gradient(135deg, var(--azul-800) 0%, var(--azul-700) 100%); color: #fff; box-shadow: 0 8px 20px rgba(0, 102, 177, 0.35); }
+.boton--marca:hover:not(:disabled) { background: linear-gradient(135deg, var(--azul-900) 0%, var(--azul-800) 100%); color: #fff; transform: translateY(-1px); }
+.casilla__entrada--interruptor { appearance: none; -webkit-appearance: none; position: relative; width: 46px; height: 26px; border-radius: 999px; background: var(--gris-400); cursor: pointer; transition: background var(--transicion); flex-shrink: 0; }
+.casilla__entrada--interruptor::before { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform var(--transicion); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+.casilla__entrada--interruptor:checked { background: var(--azul-800); }
+.casilla__entrada--interruptor:checked::before { transform: translateX(20px); }
+
+/* ---------- Estructura ---------- */
+.acceso { min-height: 100vh; display: grid; grid-template-columns: minmax(0, 7fr) minmax(360px, 3fr); background: var(--blanco); }
+
+/* ---------- Panel visual ---------- */
+.hero { position: relative; overflow: hidden; color: #fff; min-height: 100vh; background: var(--azul-950); }
+.hero__velo { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20, 44, 71, 0.96) 0%, rgba(20, 44, 71, 0.7) 46%, rgba(20, 44, 71, 0.12) 100%); pointer-events: none; }
+.hero__contenido { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; gap: var(--e6); padding: var(--e10) var(--e10) var(--e8); }
+.hero__texto { margin-top: var(--e4); max-width: 30rem; }
+.hero__etiqueta { font-size: var(--texto-sm); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #c9def2; margin-bottom: var(--e3); }
+.hero__titular { font-family: var(--fuente-titulos); font-weight: 700; font-size: clamp(2rem, 3.3vw, 3.1rem); line-height: 1.15; text-shadow: 0 2px 18px rgba(3, 31, 58, 0.5); }
+.hero__titular span { color: #8fd0ff; display: block; }
+.hero__subtitulo { margin-top: var(--e4); font-size: var(--texto-lg); color: #dcecf9; max-width: 28rem; }
+
+/* Tarjetas de cristal flotantes */
+.hero__vitrina { position: relative; flex: 1; min-height: 240px; }
+.vidrio { position: absolute; background: rgba(255, 255, 255, 0.13); border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-radius: 18px; padding: var(--e4); box-shadow: 0 18px 40px rgba(3, 31, 58, 0.35); color: #fff; }
+.vidrio strong { display: block; font-size: var(--texto-sm); }
+.vidrio small { display: block; font-size: var(--texto-xs); color: #dcecf9; }
+.vidrio--a { top: 6%; left: 4%; width: min(380px, 86%); animation: flotar 7s ease-in-out infinite alternate; }
+.vidrio--b { top: 56%; left: 30%; width: min(330px, 80%); display: flex; align-items: center; gap: var(--e3); animation: flotar 8s ease-in-out infinite alternate-reverse; }
+.vidrio__cabecera { display: flex; align-items: center; gap: var(--e3); margin-bottom: var(--e4); }
+.vidrio__icono { display: inline-flex; width: 34px; height: 34px; border-radius: 10px; background: rgba(255, 255, 255, 0.2); align-items: center; justify-content: center; flex-shrink: 0; }
+.vidrio__chip { margin-left: auto; font-size: var(--texto-xs); font-weight: 700; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.vidrio__chip--libre { background: #dcfce7; color: #14532d; }
+.vidrio__ok { display: inline-flex; width: 40px; height: 40px; border-radius: 50%; background: #dcfce7; color: #15803d; align-items: center; justify-content: center; flex-shrink: 0; }
+.mini { position: relative; height: 16px; border-radius: 8px; background: rgba(220, 252, 231, 0.55); overflow: hidden; }
+.mini__bloque { position: absolute; top: 0; bottom: 0; }
+.mini__bloque--ocupado { background: #e05252; }
+.mini__bloque--elegido { background: #ffffff; border-radius: 6px; }
+.mini__horas { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: #c9def2; }
+@keyframes flotar { from { transform: translateY(0); } to { transform: translateY(-9px); } }
+
+.hero__tipos { list-style: none; display: flex; flex-wrap: wrap; gap: var(--e2); }
+.hero__tipos li { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.22); font-size: var(--texto-xs); font-weight: 600; }
+.hero__pie { font-size: var(--texto-xs); letter-spacing: 0.14em; text-transform: uppercase; color: #c9def2; }
+
+/* ---------- Panel de acceso ---------- */
+.acceso__panel { position: relative; display: flex; align-items: center; justify-content: center; padding: clamp(16px, 2.4vh, 24px) clamp(10px, 1vw, 18px); background: #f2f8fd;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='104' height='180' viewBox='0 0 104 180'><path d='M52 0 L104 30 L104 90 L52 120 L0 90 L0 30Z M52 120 L52 180 M0 90 L0 150 L52 180 L104 150 L104 90' fill='none' stroke='%230066b1' stroke-opacity='0.07' stroke-width='2'/></svg>"); }
+.acceso__tarjeta { width: 100%; max-width: 470px; background: #fff; border: 1px solid #d6e6f4; border-radius: 24px; padding: clamp(18px, 3vh, 30px) clamp(14px, 1.2vw, 22px) clamp(14px, 2.2vh, 22px); box-shadow: 0 24px 60px rgba(3, 31, 58, 0.14); display: flex; flex-direction: column; gap: clamp(10px, 1.6vh, 18px); }
+.acceso__tarjeta--ancha { max-width: 660px; }
+.acceso__logo { display: flex; justify-content: center; }
+.acceso__logo .logo { height: clamp(64px, 8vh, 88px); }
+.acceso__formulario { display: flex; flex-direction: column; gap: var(--e3); }
+.acceso__encabezado { text-align: center; margin-bottom: var(--e2); }
+.acceso__encabezado h1, .acceso__tarjeta h1 { font-size: var(--texto-3xl); }
+.acceso__encabezado h1:focus, .acceso__tarjeta h1:focus { outline: none; box-shadow: none; }
+.acceso__subtitulo { margin-top: var(--e2); color: var(--gris-600); font-size: var(--texto-sm); }
+.acceso__opciones { display: flex; align-items: center; margin: 0 0 var(--e1); }
+.acceso__olvido { display: flex; align-items: center; justify-content: center; gap: var(--e2); margin-top: var(--e1); padding: var(--e3); border-radius: var(--radio); text-decoration: none; color: var(--gris-700); font-size: var(--texto-sm); background: var(--azul-50); text-align: center; min-height: var(--objetivo-minimo); }
+.acceso__olvido strong { color: var(--azul-800); }
+.acceso__olvido:hover { background: var(--azul-100); color: var(--gris-900); }
+.acceso__seguridad { display: flex; align-items: center; justify-content: center; gap: var(--e3); padding-top: var(--e4); border-top: 1px solid var(--gris-200); color: var(--azul-800); }
+.acceso__seguridad span { display: flex; flex-direction: column; color: var(--gris-900); font-size: var(--texto-sm); }
+.acceso__seguridad small { color: var(--gris-600); font-size: var(--texto-xs); }
+.acceso__credito { text-align: center; font-size: var(--texto-xs); color: var(--gris-600); }
+.acceso__credito a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.acceso__credito a:hover { color: var(--azul-800); }
+
+.demo { border: 1px dashed var(--gris-400); border-radius: var(--radio); padding: 0 var(--e4); background: var(--gris-100); }
+.demo summary { display: flex; align-items: center; gap: var(--e2); min-height: var(--objetivo-minimo); cursor: pointer; font-weight: 600; font-size: var(--texto-sm); color: var(--gris-700); }
+.demo__texto { font-size: var(--texto-xs); color: var(--gris-600); margin-bottom: var(--e3); }
+.demo__texto code { background: #fff; border: 1px solid var(--gris-300); border-radius: 4px; padding: 1px 6px; color: var(--azul-900); }
+.demo__lista { list-style: none; display: flex; flex-direction: column; gap: var(--e2); padding-bottom: var(--e4); }
+.demo__lista li { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--e2) var(--e3); background: #fff; border: 1px solid var(--gris-200); border-radius: var(--radio-sm); padding: var(--e2) var(--e3); font-size: var(--texto-sm); }
+.demo__lista li div { display: flex; flex-direction: column; min-width: 0; }
+.demo__lista li span { font-size: var(--texto-xs); color: var(--gris-600); }
+.demo__usar { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 var(--e3); border: 1.5px solid var(--azul-800); background: #fff; color: var(--azul-800); border-radius: var(--radio-sm); font-weight: 600; font-size: var(--texto-sm); cursor: pointer; flex-shrink: 0; white-space: nowrap; }
+.demo__usar:hover:not(:disabled) { background: var(--azul-50); }
+
+/* Recuperar acceso */
+.acceso--simple { display: block; position: relative; }
+.acceso__fondo-completo { position: fixed; inset: 0; overflow: hidden; }
+.acceso__velo { position: absolute; inset: 0; background: rgba(3, 31, 58, 0.55); }
+.acceso__panel--centrado { position: relative; z-index: 1; min-height: 100vh; background: transparent; }
+.pasos li h2 { font-size: var(--texto-base); }
+
+/* ---------- Pantallas de escritorio con poca altura: formulario compacto ---------- */
+@media (min-width: 901px) and (max-height: 860px) {
+  .acceso__panel { padding-block: 16px; }
+  .acceso__tarjeta { padding: 18px 16px 16px; gap: 10px; }
+  .acceso__logo .logo { height: 64px; }
+  .acceso__encabezado h1, .acceso__tarjeta h1 { font-size: var(--texto-2xl); }
+  .acceso__subtitulo { font-size: var(--texto-xs); }
+  .acceso__formulario { gap: 8px; }
+  .acceso__seguridad { padding-top: 10px; }
+  .acceso__seguridad small { display: none; }
+  .demo summary, .acceso__olvido { min-height: 40px; }
+  .acceso__olvido { padding: 8px; }
+}
+
+/* ---------- Pantallas pequeñas: el panel visual pasa a ser una franja superior ---------- */
+@media (max-width: 900px) {
+  .acceso { display: block; }
+  .hero { min-height: 0; }
+  .hero__contenido { min-height: 0; padding: var(--e6) var(--e5) var(--e10); gap: var(--e3); }
+  .hero__texto { margin-top: 0; }
+  .hero__titular { font-size: var(--texto-2xl); }
+  .hero__subtitulo, .hero__vitrina, .hero__tipos, .hero__pie { display: none; }
+  .acceso__panel { padding: 0 var(--e4) var(--e8); align-items: flex-start; }
+  .acceso__tarjeta { margin-top: calc(var(--e8) * -1); padding: var(--e6) var(--e5); border-radius: 22px; }
+  .acceso--simple .acceso__panel { padding-top: var(--e8); }
+}
+
+/* El logo conserva sus proporciones aunque esté dentro de un contenedor flex */
+.logo { max-width: 100%; object-fit: contain; }
+.hero__contenido > .logo { align-self: flex-start; }
